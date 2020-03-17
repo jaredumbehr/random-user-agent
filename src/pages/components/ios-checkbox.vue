@@ -1,24 +1,50 @@
 <template>
   <div>
-    <input class="toggle toggle-light" :id="id" type="checkbox" :checked="checked" />
+    <input
+      class="toggle toggle-light"
+      type="checkbox"
+      :id="id"
+      :value="value"
+      v-model="checked"
+    />
     <label class="toggle-btn" :for="id"></label>
   </div>
 </template>
 
 <script lang="ts">
-  export default {
-    name: 'iosCheckbox',
-    props: {
-      id: {
-        default: 'checkbox-id',
-        type: String
-      },
-      checked: {
-        default: false,
-        type: Boolean
-      },
+import Vue from 'vue';
+
+export default Vue.extend({
+  name: 'iosCheckbox',
+  model: {
+    prop: 'checked',
+    event: 'change'
+  },
+  props: {
+    id: {
+      default: 'checkbox-id',
+      type: String
+    },
+    value: {
+      default: '',
+      type: String,
+    },
+    checked: {
+      default: () => [],
+      type: Array,
     }
-  };
+  },
+  computed: {
+    model: {
+      get(): any[] {
+        return this.checked;
+      },
+      set(val: string): void {
+        this.$emit('change', val);
+      }
+    }
+  }
+});
 </script>
 
 <style lang="scss" scoped>

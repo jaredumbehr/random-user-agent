@@ -12,7 +12,7 @@
         <strong>
           <label :for="checkbox_id">{{ i18n('enabled_on_this_domain', 'Enabled on this domain') }}</label>
         </strong>
-        <iosCheckbox :id="checkbox_id" :checked="isEnabledOnThisDomain"></iosCheckbox>
+        <iosCheckbox :id="checkbox_id" value="enableOnThisDomain" v-model="checked"></iosCheckbox>
       </div>
       <ul>
         <li v-if="isEnabled">
@@ -55,7 +55,7 @@
       return {
         activeUserAgent: 'Loading..',
         isEnabled: false,
-        isEnabledOnThisDomain: false,
+        checked: [],
       };
     },
     methods: {
